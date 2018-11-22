@@ -3,7 +3,6 @@
 namespace Dev13\ModuleInstaller\Commands;
 
 use Illuminate\Console\Command;
-
 class InstallerCommand extends Command
 {
     /**
@@ -27,7 +26,7 @@ class InstallerCommand extends Command
      */
     public function __construct()
     {
-        //
+        $this->info('Right!');
     }
 
     /**

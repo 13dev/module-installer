@@ -1,8 +1,8 @@
 <?php
 
-namespace Vendor\Packages\Tests\Feature;
+namespace Dev13\ModuleInstaller\Tests\Feature;
 
-use Vendor\Package\Tests\PackageTestCase;
+use Dev13\ModuleInstaller\Tests\PackageTestCase;
 
 class ExampleTest extends PackageTestCase
 {

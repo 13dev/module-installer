@@ -1,8 +1,8 @@
 <?php
 
-namespace Vendor\Package\Tests;
+namespace Dev13\ModuleInstaller\Tests;
 
-use Vendor\Package\PackageServiceProvider;
+use Dev13\ModuleInstaller\ModuleInstallerServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 abstract class PackageTestCase extends TestCase
@@ -10,6 +10,6 @@ abstract class PackageTestCase extends TestCase
 
     protected function getPackageProviders($app)
     {
-        return [PackageServiceProvider::class];
+        return [ModuleInstallerServiceProvider::class];
     }
 }
