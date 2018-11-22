@@ -116,6 +116,7 @@ class FileGenerator extends Generator
 
     /**
      * Generate the file.
+     * @throws FileAlreadyExistException
      */
     public function generate()
     {

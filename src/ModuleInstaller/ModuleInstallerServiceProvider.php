@@ -6,9 +6,8 @@ use Dev13\ModuleInstaller\Commands\InstallerCommand;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * A Laravel 5.5 package boilerplate
- *
- * @author: Rémi Collin (remi@code16.fr)
+ * Class ModuleInstallerServiceProvider
+ * @package Dev13\ModuleInstaller
  */
 class ModuleInstallerServiceProvider extends ServiceProvider {
 
