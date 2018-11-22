@@ -1,8 +1,12 @@
 {
     "name": "13dev/module-installer",
     "description": "A Module Installer",
-    "keywords": [],
-    "homepage": "",
+    "keywords": [
+        "php",
+        "laravel",
+        "laravel-modules",
+        "modules"
+    ],
     "minimum-stability": "dev",
     "authors": [
         {
