@@ -24,7 +24,7 @@ class Path
      */
     public static function Init()
     {
-        static::$namespace = base_path() . config('config.namespace-modules');
+        static::$namespace = base_path() . '/' . config('module-installer.namespace-modules');
         return new static;
     }
 
@@ -34,7 +34,7 @@ class Path
      */
     public function migration()
     {
-        return static::$namespace . '/' . config('config.migrations-modules');
+        return static::$namespace . '/' . config('module-installer.migrations-modules');
     }
 
 }

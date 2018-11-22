@@ -71,7 +71,8 @@ class ModuleInstallerServiceProvider extends ServiceProvider {
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/config.php', $this->packageName
+            __DIR__.'/../config/config.php',
+            $this->packageName
         );
 
     }
