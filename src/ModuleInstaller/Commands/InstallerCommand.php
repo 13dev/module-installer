@@ -52,8 +52,8 @@ class InstallerCommand extends Command
      */
     public function handle()
     {
-        $this->injectableModule = Module::findOrFail($this->argument('injectableModule'));
-        $this->module = Module::findOrFail($this->argument('module'));
+        $this->injectableModule = Module::findOrFail($this->ask('Injectable Module'));
+        $this->module = Module::findOrFail($this->ask('Module'));
 
         $message = with(new GeneratorSupport(
             $this->module->getExtraPath('Migrations'). '/'. $this->createMigrationName(). '.php',
@@ -63,15 +63,6 @@ class InstallerCommand extends Command
         ))->generate();
 
         $this->info($message);
-    }
-
-
-    protected function getArguments()
-    {
-        return [
-            ['injectableModule', InputArgument::REQUIRED, 'The name of model will recive \'upgrade\'.'],
-            ['module', InputArgument::REQUIRED, 'The name of module will be used.'],
-        ];
     }
 
     /**
