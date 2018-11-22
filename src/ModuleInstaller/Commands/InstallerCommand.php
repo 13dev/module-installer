@@ -57,10 +57,10 @@ class InstallerCommand extends Command
         $stub = with(new Stub('/migrations/Migration.stub', [
             'NAME'              => $this->module
         ]))->render();
-        
+
         $message = with(new GeneratorSupport(
             Path::Init($this->injectableModule)->migration(). '/'. $this->createMigrationName($this->module) . '.php',
-            $stub
+            $stub, $this->laravel
         ))->generate();
 
         return $message;

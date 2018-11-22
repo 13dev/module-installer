@@ -17,15 +17,20 @@ class GeneratorSupport
      */
     private $templateContents;
 
+
+    private $laravel;
+
     /**
      * GeneratorSupport constructor.
      * @param $destinationFilePath
      * @param $templateContents
+     * @param $laravel
      */
-    public function __construct($destinationFilePath, $templateContents)
+    public function __construct($destinationFilePath, $templateContents, $laravel)
     {
         $this->templateContents = $templateContents;
         $this->destinationFilePath = $destinationFilePath;
+        $this->laravel = $laravel;
     }
 
     /**
