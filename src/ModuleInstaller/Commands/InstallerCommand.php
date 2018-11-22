@@ -51,28 +51,27 @@ class InstallerCommand extends Command
      */
     public function handle()
     {
-        $this->info(Path::Init()->migration());
-        $this->info('base_path : ' . base_path());
-        $this->info('app_path : ' . app_path());
         $this->injectableModule =$this->ask('Injectable Module');
         $this->module = $this->ask('Module');
 
-        /*$message = with(new GeneratorSupport(
-            Path::Init()->migration(). '/'. $this->createMigrationName(). '.php',
-            with(new Stub('/migrations/Migration.stub', [
-                'NAME'              => $this->module
-            ]))->render()
-        ))->generate();*/
+        $stub = with(new Stub('/migrations/Migration.stub', [
+            'NAME'              => $this->module
+        ]))->render();
+        
+        $message = with(new GeneratorSupport(
+            Path::Init($this->injectableModule)->migration(). '/'. $this->createMigrationName($this->module) . '.php',
+            $stub
+        ))->generate();
 
-        $this->info(Path::Init()->migration());
+        return $message;
     }
 
     /**
      * @return string
      */
-    private function createMigrationName()
+    private function createMigrationName($module)
     {
-        $pieces = preg_split('/(?=[A-Z])/', $this->module, -1, PREG_SPLIT_NO_EMPTY);
+        $pieces = preg_split('/(?=[A-Z])/', $module, -1, PREG_SPLIT_NO_EMPTY);
 
         $string = '';
         foreach ($pieces as $i => $piece) {
