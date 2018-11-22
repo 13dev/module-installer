@@ -30,19 +30,19 @@ class ModuleInstallerServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__.'/../routes/routes.php');
+        //$this->loadRoutesFrom(__DIR__.'/../routes/routes.php');
 
         // Register Views from your package
-        $this->loadViewsFrom(__DIR__.'/../views', $this->packageName);
+        //$this->loadViewsFrom(__DIR__.'/../views', $this->packageName);
 
         // Regiter migrations
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
         // Register translations
         //$this->loadTranslationsFrom(__DIR__.'/../lang', $this->packageName);
-        $this->publishes([
-            __DIR__.'/../lang' => resource_path('lang/vendor/'. $this->packageName),
-        ]);
+        //$this->publishes([
+        //    __DIR__.'/../lang' => resource_path('lang/vendor/'. $this->packageName),
+        //]);
 
         // Register your asset's publisher
         //$this->publishes([
