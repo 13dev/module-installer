@@ -2,8 +2,8 @@
 
 namespace Dev13\ModuleInstaller;
 
+use Dev13\ModuleInstaller\Commands\InstallerCommand;
 use Illuminate\Support\ServiceProvider;
-use Vendor\Package\Commands\InstallerCommand;
 
 /**
  * A Laravel 5.5 package boilerplate
