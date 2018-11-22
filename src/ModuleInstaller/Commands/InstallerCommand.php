@@ -3,11 +3,10 @@
 namespace Dev13\ModuleInstaller\Commands;
 
 use Dev13\ModuleInstaller\Support\GeneratorSupport;
+use Dev13\ModuleInstaller\Support\Path;
 use Dev13\ModuleInstaller\Support\Stub;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Nwidart\Modules\Facades\Module;
-use Symfony\Component\Console\Input\InputArgument;
 
 class InstallerCommand extends Command
 {
@@ -26,12 +25,12 @@ class InstallerCommand extends Command
     protected $description = '';
 
     /**
-     * @var Module injectable module
+     * @var string injectable module
      */
     private $injectableModule;
 
     /**
-     * @var Module module
+     * @var string module
      */
     private $module;
 
@@ -52,17 +51,20 @@ class InstallerCommand extends Command
      */
     public function handle()
     {
-        $this->injectableModule = Module::findOrFail($this->ask('Injectable Module'));
-        $this->module = Module::findOrFail($this->ask('Module'));
+        $this->info(Path::Init()->migration());
+        $this->info('base_path : ' . base_path());
+        $this->info('app_path : ' . app_path());
+        $this->injectableModule =$this->ask('Injectable Module');
+        $this->module = $this->ask('Module');
 
-        $message = with(new GeneratorSupport(
-            $this->module->getExtraPath('Migrations'). '/'. $this->createMigrationName(). '.php',
+        /*$message = with(new GeneratorSupport(
+            Path::Init()->migration(). '/'. $this->createMigrationName(). '.php',
             with(new Stub('/migrations/Migration.stub', [
-                'NAME'              => $this->module->getModelName()
+                'NAME'              => $this->module
             ]))->render()
-        ))->generate();
+        ))->generate();*/
 
-        $this->info($message);
+        $this->info(Path::Init()->migration());
     }
 
     /**
@@ -70,7 +72,7 @@ class InstallerCommand extends Command
      */
     private function createMigrationName()
     {
-        $pieces = preg_split('/(?=[A-Z])/', $this->module->getLowerName(), -1, PREG_SPLIT_NO_EMPTY);
+        $pieces = preg_split('/(?=[A-Z])/', $this->module, -1, PREG_SPLIT_NO_EMPTY);
 
         $string = '';
         foreach ($pieces as $i => $piece) {

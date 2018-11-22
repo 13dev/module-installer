@@ -10,4 +10,14 @@ return [
     */
     'name' => 'module-installer',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Namespace Modules
+    |--------------------------------------------------------------------------
+    | where the laravel-modules are stored ?
+    */
+    'namespace-modules' => 'Modules',
+
+    'migrations-modules' => 'migrations',
+
 ];
