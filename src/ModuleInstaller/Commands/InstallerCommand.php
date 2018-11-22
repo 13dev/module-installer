@@ -26,7 +26,7 @@ class InstallerCommand extends Command
      */
     public function __construct()
     {
-        $this->info('Right!');
+        parent::__construct();
     }
 
     /**
@@ -36,6 +36,6 @@ class InstallerCommand extends Command
      */
     public function handle()
     {
-        //
+        $this->info('right!');
     }
 }
