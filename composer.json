@@ -19,18 +19,18 @@
     },
     "autoload": {
        "psr-4": {
-            "13dev\\ModuleInstaller\\": "src/ModuleInstaller"
+            "Dev13\\ModuleInstaller\\": "src/ModuleInstaller"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "13dev\\ModuleInstaller\\Tests\\": "tests/"
+            "Dev13\\ModuleInstaller\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "13dev\\ModuleInstaller\\ModuleInstallerServiceProvider"
+                "Dev13\\ModuleInstaller\\ModuleInstallerServiceProvider"
             ]
         }
     },

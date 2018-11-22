@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\ModuleInstaller\Commands;
+namespace Dev13\ModuleInstaller\Commands;
 
 use Illuminate\Console\Command;
 

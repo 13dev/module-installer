@@ -1,6 +1,6 @@
 <?php 
 
-namespace Vendor\ModuleInstaller;
+namespace Dev13\ModuleInstaller;
 
 use Illuminate\Support\ServiceProvider;
 use Vendor\Package\Commands\InstallerCommand;
