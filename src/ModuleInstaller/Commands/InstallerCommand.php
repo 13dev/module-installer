@@ -52,7 +52,7 @@ class InstallerCommand extends Command
      */
     public function handle()
     {
-        $this->injectableModule = Module::findOrFail($this->argument('injectable-module'));
+        $this->injectableModule = Module::findOrFail($this->argument('injectableModule'));
         $this->module = Module::findOrFail($this->argument('module'));
 
         $message = with(new GeneratorSupport(
@@ -69,7 +69,7 @@ class InstallerCommand extends Command
     protected function getArguments()
     {
         return [
-            ['injectable-module', InputArgument::REQUIRED, 'The name of model will recive \'upgrade\'.'],
+            ['injectableModule', InputArgument::REQUIRED, 'The name of model will recive \'upgrade\'.'],
             ['module', InputArgument::REQUIRED, 'The name of module will be used.'],
         ];
     }
