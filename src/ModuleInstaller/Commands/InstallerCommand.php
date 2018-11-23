@@ -47,7 +47,7 @@ class InstallerCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
@@ -55,15 +55,18 @@ class InstallerCommand extends Command
         $this->module = $this->ask('Module');
 
         $stub = with(new Stub('/migrations/Migration.stub', [
-            'NAME'              => $this->module
+            'NAME' => $this->module
         ]))->render();
 
-        $message = with(new GeneratorSupport(
-            Path::Init($this->injectableModule)->migration(). '/'. $this->createMigrationName($this->module) . '.php',
-            $stub, $this->laravel
-        ))->generate();
+        $generate = new GeneratorSupport($this->laravel);
+        $generate->setDestinationFilePath(Path::Init($this->injectableModule)->migration(). '/'. $this->createMigrationName($this->module) . '.php');
+        $generate->setTemplateContents($stub);
 
-        return $message;
+        if($generate->generate()) {
+            $this->info($generate->getMessage());
+        } else {
+            $this->error($generate->getMessage());
+        }
     }
 
     /**

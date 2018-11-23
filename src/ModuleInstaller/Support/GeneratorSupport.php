@@ -17,26 +17,30 @@ class GeneratorSupport
      */
     private $templateContents;
 
-
+    /**
+     * Instance of laravel
+     */
     private $laravel;
 
     /**
+     * @var string
+     */
+    private $message;
+
+    /**
      * GeneratorSupport constructor.
-     * @param $destinationFilePath
-     * @param $templateContents
      * @param $laravel
      */
-    public function __construct($destinationFilePath, $templateContents, $laravel)
+    public function __construct($laravel)
     {
-        $this->templateContents = $templateContents;
-        $this->destinationFilePath = $destinationFilePath;
         $this->laravel = $laravel;
+        $this->message = '';
     }
 
     /**
      * Execute the console command.
      */
-    public function generate()
+    public function generate(): bool
     {
         $path = str_replace('\\', '/', $this->getDestinationFilePath());
 
@@ -48,9 +52,11 @@ class GeneratorSupport
 
         try {
             with(new FileGenerator($path, $contents))->generate();
-            return "Created : {$path}";
+            $this->setMessage("Created : {$path}");
+            return true;
         } catch (FileAlreadyExistException $e) {
-            return "File : {$path} already exists.";
+            $this->setMessage("The file {$path} already exists");
+            return false;
         }
     }
 
@@ -86,6 +92,20 @@ class GeneratorSupport
         $this->templateContents = $templateContents;
     }
 
+    /**
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
 
+    /**
+     * @param string $message
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    }
 
 }
