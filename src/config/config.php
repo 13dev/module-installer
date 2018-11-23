@@ -16,7 +16,7 @@ return [
     |--------------------------------------------------------------------------
     | where the laravel-modules are stored ?
     */
-    'paths' => [
+    'path' => [
         'namespace' => 'Modules',
         'migrations' => 'database/migrations',
     ]
