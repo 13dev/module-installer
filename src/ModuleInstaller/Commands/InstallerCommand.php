@@ -58,8 +58,13 @@ class InstallerCommand extends Command
             'NAME' => $this->module
         ]))->render();
 
+        //instance the helper
         $generate = new GeneratorSupport($this->laravel);
-        $generate->setDestinationFilePath(Path::Init($this->injectableModule)->migration(). '/'. $this->createMigrationName($this->module) . '.php');
+        // Create filename
+        $filename = $this->createMigrationName($this->module . '_' . $this->injectableModule) . '.php';
+        //Build a path to store it
+        $migrationPath = Path::getInstance()->setModule($this->injectableModule)->getMigrationPath()->withFile($filename);
+        $generate->setDestinationFilePath($migrationPath);
         $generate->setTemplateContents($stub);
 
         if($generate->generate()) {

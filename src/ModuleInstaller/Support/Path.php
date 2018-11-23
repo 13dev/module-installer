@@ -14,29 +14,51 @@ namespace Dev13\ModuleInstaller\Support;
  */
 class Path
 {
-    /**
-     * @var string Path of modules
-     */
-    static $namespace;
+
+    private static $path;
+
+    private static $_instance = null;
+
+    private function __construct() {
+        self::$path = base_path() . '/' . config('module-installer.path.namespace');
+    }
+
+    public static function getInstance()
+    {
+        if (self::$_instance === null) {
+            self::$_instance = new self;
+        }
+
+        return self::$_instance;
+    }
 
     /**
-     * Init class
      * @param $moduleName
-     * @return Path
+     * @return $this
      */
-    public static function Init($moduleName)
+    public function setModule($moduleName)
     {
-        static::$namespace = base_path() . '/' . config('module-installer.path.namespace') . '/'. $moduleName;
-        return new static;
+        self::$path .= '/' . $moduleName;
+        return $this;
     }
 
     /**
      * Get Migrations paths
+     * @return $this
+     */
+    public function getMigrationPath()
+    {
+       self::$path  .= '/' . config('module-installer.path.migrations');
+       return $this;
+    }
+
+    /**
+     * @param $filename
      * @return string
      */
-    public function migration()
+    public function withFile($filename)
     {
-        return static::$namespace . '/' . config('module-installer.path.migrations');
+        return self::$path .= '/' . $filename;
     }
 
 }
